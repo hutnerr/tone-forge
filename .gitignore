@@ -25,3 +25,6 @@ replay_pid*
 
 # ENV
 .env
+
+# Maven build ignore
+/target/
