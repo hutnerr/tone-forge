@@ -4,6 +4,7 @@ import com.google.genai.Client;
 
 import models.ConversionRequest;
 import models.ConversionResult;
+import strategies.LingoInterface;
 import strategies.LingoRegistry;
 import utils.Clogger;
 import utils.EnvReader;
@@ -11,19 +12,28 @@ import utils.EnvReader;
 public class Main {
     public static void main(String[] args) 
     {
+        Clogger.debugEnabled = false;
+
         String testInput;
-        // testInput = "Hey, can you help me find a good restaurant nearby?";
+        testInput = "Hey, can you help me find a good restaurant nearby?";
         // testInput = "Hello, how are you?";
-        testInput = "What is the weather like today?";
+        // testInput = "What is the weather like today?";
 
         try (Client client = Client.builder()
             .apiKey(EnvReader.getEnv("GEMINI_API_KEY"))
             .build())
         {
-            LingoRegistry.listAll();
+            // LingoRegistry.listAll();
 
             ConversionRequest request = new ConversionRequest(testInput);
-            ConversionResult result = LingoRegistry.PIRATE.getStrategy().convert(request, client);
+
+            LingoInterface strategy;
+            // strategy = LingoRegistry.PIRATE.getStrategy();
+            // strategy = LingoRegistry.MEDIEVAL.getStrategy();
+            // strategy = LingoRegistry.SHAKESPEARE.getStrategy();
+            strategy = LingoRegistry.TODDLER.getStrategy();
+
+            ConversionResult result = strategy.convert(request, client);
 
             if (result.hasError())
             {

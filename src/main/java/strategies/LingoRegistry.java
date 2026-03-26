@@ -5,7 +5,9 @@ import utils.Clogger;
 public enum LingoRegistry 
 {
     PIRATE(PirateStrategy.INSTANCE),
-    MEDIEVAL(MedievalStrategy.INSTANCE);
+    MEDIEVAL(MedievalStrategy.INSTANCE),
+    SHAKESPEARE(ShakespeareStrategy.INSTANCE),
+    TODDLER(ToddlerStrategy.INSTANCE);
 
     private final LingoInterface strategy;
 
