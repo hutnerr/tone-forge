@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Converter</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        padding: 0;
+    }
+
+    .container {
+        margin: 3rem auto;
+        text-align: center;
+        max-width: 1000px;
+    }
+
+    input, button, textarea {
+        padding: 0.5rem;
+        margin: 0.5rem 0.2rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    #text {
+        width: 80%;
+        height: 150px;
+        display: block;
+        margin: 1rem auto;
+    }
+
+    #strategy {
+        width: 40%;
+        display: inline-block;
+        margin: 1rem 0;
+    }
+
+    button {
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        transition: background 0.2s;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .secondary-btn {
+        background-color: #6c757d;
+    }
+
+    .secondary-btn:hover {
+        background-color: #5a6268;
+    }
+
+    .loading {
+        font-style: italic;
+        color: #666;
+        margin-top: 0.5rem;
+        display: none;
+    }
+
+    /* Alignment fix: Results are left-aligned */
+    .results, .strategy-list-container {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        text-align: left; 
+    }
+
+    .result-box {
+        flex: 1;
+        padding: 1rem;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        word-wrap: break-word;
+        min-height: 200px;
+        overflow-x: auto;
+    }
+
+    .result-box h3 {
+        margin-top: 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        margin: 0;
+    }
+
+    ul {
+        padding-left: 1.5rem;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Text Converter</h2>
+    
+    <input id="strategy" placeholder="Enter Strategy name">
+    <textarea id="text" placeholder="Enter text here..."></textarea>
+    
+    <div class="actions">
+        <button onclick="convert()">Convert Text</button>
+        <button class="secondary-btn" onclick="fetchStrategies()">Show Strategies</button>
+    </div>
+
+    <div id="loading" class="loading">Loading...</div>
+
+    <div id="strategyContainer" class="strategy-list-container" style="display: none;">
+        <div class="result-box">
+            <h3>Available Strategies</h3>
+            <ul id="strategyList"></ul>
+        </div>
+    </div>
+
+    <div class="results">
+        <div class="result-box">
+            <h3>Response Text</h3>
+            <p id="textResult"></p>
+        </div>
+        <div class="result-box">
+            <h3>JSON Response</h3>
+            <pre id="jsonResult"></pre>
+        </div>
+    </div>
+</div>
+
+<script>
+    const API_BASE = 'http://localhost:8080/api';
+
+    async function convert() {
+        const strategy = document.getElementById('strategy').value;
+        const text = document.getElementById('text').value;
+        const loadingEl = document.getElementById('loading');
+
+        loadingEl.style.display = 'block';
+        document.getElementById('textResult').textContent = '';
+        document.getElementById('jsonResult').textContent = '';
+
+        try {
+            const response = await fetch(`${API_BASE}/convert`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ strategy, text })
+            });
+
+            const data = await response.json();
+            document.getElementById('textResult').textContent = data.convertedText || 'No text returned';
+            document.getElementById('jsonResult').textContent = JSON.stringify(data, null, 2);
+        } catch (err) {
+            document.getElementById('textResult').textContent = 'Error connecting to API';
+            document.getElementById('jsonResult').textContent = err.message;
+        } finally {
+            loadingEl.style.display = 'none';
+        }
+    }
+
+    async function fetchStrategies() {
+        const loadingEl = document.getElementById('loading');
+        const container = document.getElementById('strategyContainer');
+        const list = document.getElementById('strategyList');
+        
+        loadingEl.style.display = 'block';
+        list.innerHTML = '';
+
+        try {
+            const response = await fetch(`${API_BASE}/strategies`);
+            const strategies = await response.json(); // Assumes API returns an array of strings
+
+            if (Array.isArray(strategies) && strategies.length > 0) {
+                strategies.forEach(s => {
+                    const li = document.createElement('li');
+                    li.textContent = s;
+                    list.appendChild(li);
+                });
+                container.style.display = 'flex';
+            } else {
+                list.innerHTML = '<li>No strategies found</li>';
+                container.style.display = 'flex';
+            }
+        } catch (err) {
+            alert('Failed to fetch strategies: ' + err.message);
+        } finally {
+            loadingEl.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>

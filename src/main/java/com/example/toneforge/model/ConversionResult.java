@@ -2,30 +2,43 @@ package com.example.toneforge.model;
 
 public class ConversionResult 
 {
-    private final String original;
-    private final String converted;
-    private final String lingo;
-    private final String error;
+    private String originalText;
+    private String convertedText;
+    private String lingoString;
+    private String error;
 
-    public ConversionResult(String original, String converted, String lingo) 
+    public ConversionResult() {} // default constructor for deserialization
+
+    // success constructor
+    public ConversionResult(String originalText, String convertedText, String lingoString) 
     {
-        this.original  = original;
-        this.converted = converted;
-        this.lingo     = lingo;
+        this.originalText  = originalText;
+        this.convertedText = convertedText;
+        this.lingoString     = lingoString;
         this.error     = null;
     }
 
+    // error constructor
     public ConversionResult(String error)
     {
-        this.original  = null;
-        this.converted = null;
-        this.lingo     = null;
+        this.originalText  = null;
+        this.convertedText = null;
+        this.lingoString     = null;
         this.error     = error;
     }
 
-    public String getOriginal()  { return original; }
-    public String getConverted() { return converted; }
-    public String getLingo()     { return lingo; }
+    // getters
+    public String getOriginalText()  { return originalText; }
+    public String getConvertedText() { return convertedText; }
+    public String getLingoString()     { return lingoString; }
     public String getError()     { return error; } // will be null if no error occurred, otherwise will contain error msg
+
+    // setters
+    public void setOriginalText(String original) { this.originalText = original; }
+    public void setConvertedText(String converted) { this.convertedText = converted; }
+    public void setLingoString(String lingo) { this.lingoString = lingo; }
+    public void setError(String error) { this.error = error; }
+
+    // helpers
     public boolean hasError() { return error != null; }
 }
