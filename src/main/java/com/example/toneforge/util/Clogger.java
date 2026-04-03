@@ -1,4 +1,4 @@
-package utils;
+package com.example.toneforge.util;
 
 public class Clogger
 {

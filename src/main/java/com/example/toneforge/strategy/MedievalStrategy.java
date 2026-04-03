@@ -1,4 +1,4 @@
-package strategies;
+package com.example.toneforge.strategy;
 
 public class MedievalStrategy extends AbstractLingo 
 {

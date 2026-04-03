@@ -1,9 +1,8 @@
-package strategies;
+package com.example.toneforge.strategy;
 
+import com.example.toneforge.model.ConversionRequest;
+import com.example.toneforge.model.ConversionResult;
 import com.google.genai.Client;
-
-import models.ConversionRequest;
-import models.ConversionResult;
 
 public interface LingoInterface
 {

@@ -1,16 +1,11 @@
-package strategies;
+package com.example.toneforge.strategy;
 
-import java.io.IOException;
-
-import org.apache.http.HttpException;
-
+import com.example.toneforge.model.ConversionRequest;
+import com.example.toneforge.model.ConversionResult;
 import com.google.genai.Client;
 import com.google.genai.types.Content;
 import com.google.genai.types.GenerateContentConfig;
 import com.google.genai.types.Part;
-
-import models.ConversionRequest;
-import models.ConversionResult;
 
 public abstract class AbstractLingo implements LingoInterface 
 {
@@ -31,14 +26,6 @@ public abstract class AbstractLingo implements LingoInterface
                 config
             );
             return new ConversionResult(request.getText(), response.text(), getName());
-        } 
-        catch (HttpException e) 
-        {
-            return new ConversionResult("HTTP error occurred while converting text: " + e.getMessage());
-        } 
-        catch (IOException e) 
-        {
-            return new ConversionResult("IO error occurred while converting text: " + e.getMessage());
         }
         catch (Exception e) 
         {

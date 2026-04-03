@@ -1,6 +1,6 @@
-package strategies;
+package com.example.toneforge.strategy;
 
-import utils.Clogger;
+import com.example.toneforge.util.Clogger;
 
 public enum LingoRegistry 
 {

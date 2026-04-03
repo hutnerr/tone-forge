@@ -1,16 +1,7 @@
-# Compiled class file
+# =========================
+# Compiled / Build Output
+# =========================
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.nar
@@ -19,12 +10,74 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+/target/
+/build/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# JVM crash logs
 hs_err_pid*
 replay_pid*
 
-# ENV
+# =========================
+# Environment
+# =========================
 .env
 
-# Maven build ignore
-/target/
+# =========================
+# Maven
+# =========================
+.mvn/wrapper/maven-wrapper.jar
+
+# Allow nested build dirs in source if needed
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# =========================
+# BlueJ
+# =========================
+*.ctxt
+
+# =========================
+# Mobile Tools for Java (J2ME)
+# =========================
+.mtj.tmp/
+
+# =========================
+# IDEs
+# =========================
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse / STS
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/dist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# =========================
+# Misc
+# =========================
+HELP.md

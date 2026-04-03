@@ -1,4 +1,4 @@
-package models;
+package com.example.toneforge.model;
 
 public class ConversionRequest 
 {

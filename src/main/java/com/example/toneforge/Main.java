@@ -1,13 +1,11 @@
-import java.io.IOException;
-
+package com.example.toneforge;
+import com.example.toneforge.model.ConversionRequest;
+import com.example.toneforge.model.ConversionResult;
+import com.example.toneforge.strategy.LingoInterface;
+import com.example.toneforge.strategy.LingoRegistry;
+import com.example.toneforge.util.Clogger;
+import com.example.toneforge.util.EnvReader;
 import com.google.genai.Client;
-
-import models.ConversionRequest;
-import models.ConversionResult;
-import strategies.LingoInterface;
-import strategies.LingoRegistry;
-import utils.Clogger;
-import utils.EnvReader;
 
 public class Main {
     public static void main(String[] args) 
@@ -45,7 +43,7 @@ public class Main {
                 Clogger.info("Converted: " + result.getConverted());
             }
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             Clogger.error("Failed to close client: " + e.getMessage());
         }
