@@ -30,6 +30,7 @@ replay_pid*
 # =========================
 # Maven
 # =========================
+.mvn
 .mvn/wrapper/maven-wrapper.jar
 
 # Allow nested build dirs in source if needed
