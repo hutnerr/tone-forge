@@ -27,6 +27,13 @@ public class EnvReader {
     {
         HashMap<String, String> loadedTemp = new HashMap<>();
 
+        java.io.File envFile = new java.io.File(DOTENV_PATH);
+        if (!envFile.exists()) 
+        {
+            Clogger.debug(".env file not found at " + DOTENV_PATH + ", skipping file load.");
+            return loadedTemp; 
+        }
+
         try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(DOTENV_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {

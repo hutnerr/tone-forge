@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.toneforge.model.ConversionRequest;
 import com.example.toneforge.model.ConversionResult;
 import com.example.toneforge.service.ConversionService;
+import com.example.toneforge.util.Clogger;
 
 @RestController
 @RequestMapping("/api")
@@ -26,12 +27,14 @@ public class ConversionController
     @PostMapping("/convert")
     public ConversionResult convert(@RequestBody ConversionRequest request) 
     {
+        Clogger.log("API", "POST: Received conversion request: " + request);
         return conversionService.convertText(request);
     }
 
     @GetMapping("/strategies")
     public List<String> strategies() 
     {
+        Clogger.log("API", "GET: Getting available conversion strategies");
         return conversionService.getAvailableStrategies();
     }
 }

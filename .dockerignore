@@ -1,0 +1,15 @@
+# Ignore the local build folder (Docker will do its own build)
+target/
+
+# Ignore secrets
+.env
+src/main/resources/.env
+
+# Ignore IDE junk
+.idea/
+.vscode/
+*.iml
+
+# Ignore git history
+.git
+.gitignore
