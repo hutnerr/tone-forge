@@ -7,6 +7,8 @@ It is built with **Spring Boot**, hosted on **AWS**, and uses the **Gemini API**
 
 You can view a simple demo of the API [here](https://hutnerr.github.io/tone-forge/). 
 
+> The demo is actually broken right now because the API is http and not https. Working on moving it over to the same EC2.
+
 > Limit's are strict due to me being on the free plan of Gemini as well as AWS.
 
 ## Usage
