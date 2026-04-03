@@ -1,11 +1,48 @@
 ## Overview
-ToneForge converts the given text into a specific lingo. For example, with the lingo of "Pirate", it might convert "Hello, Friend" to "Ahoy Matey!".
+ToneForge is a public API that converts text into specific lingos. For example, using the "Pirate" lingo, it might convert:
 
-ToneForge is an API built using Spring Boot and Hosted on AWS. It uses the Gemini API to convert the language to the specific lingo. 
+Hello, Friend → Ahoy Matey!
 
-**This project is WIP.**
+It is built with **Spring Boot**, hosted on **AWS**, and uses the **Gemini API** for language conversion.
 
-<!-- ## Usage -->
-<!-- ## Endpoints -->
-<!-- ## Showcase -->
-<!-- ## Links -->
+## Usage
+
+Send a **POST** request to the API:
+
+`POST https://toneforge/api/convert`
+
+Content-Type: application/json
+
+```json
+{
+    "strategy": "Pirate",
+    "text": "Hello, Friend"
+}
+```
+
+The response will be JSON:
+```json
+{
+    "original": "Hello, Friend",
+    "converted": "Ahoy Matey!",
+    "lingo": "Pirate",
+    "error": null
+}
+```
+
+Below is a simple JavaScript example.
+
+```js
+const response = await fetch(`${API_BASE}/convert`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ strategy, text })
+});
+```
+
+## Endpoints
+
+| Endpoint              | Method | Description                              |
+|-----------------------|--------|------------------------------------------|
+| `/api/convert`        | POST   | Convert text to the specified lingo      |
+| `/api/strategies`     | GET    | Returns a list of all available lingos/strategies     |
