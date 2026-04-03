@@ -5,6 +5,10 @@ Hello, Friend → Ahoy Matey!
 
 It is built with **Spring Boot**, hosted on **AWS**, and uses the **Gemini API** for language conversion.
 
+You can view a simple demo of the API [here](https://hutnerr.github.io/tone-forge/). 
+
+> Limit's are strict due to me being on the free plan of Gemini
+
 ## Usage
 
 Send a **POST** request to the API:
