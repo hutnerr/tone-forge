@@ -13,7 +13,7 @@ You can view a simple demo of the API [here](https://hutnerr.github.io/tone-forg
 
 Send a request to the API:
 
-> `POST http://44.197.230.236/api/convert`
+> `POST http://52.207.146.61/api/convert`
 
 Content-Type: application/json
 
@@ -37,7 +37,7 @@ The response will be JSON:
 Below is a simple JavaScript example.
 
 ```js
-const response = await fetch(`http://44.197.230.236/api/convert`, {
+const response = await fetch(`http://52.207.146.61/api/convert`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ strategy, text })
@@ -46,7 +46,7 @@ const response = await fetch(`http://44.197.230.236/api/convert`, {
 
 ## Endpoints
 
-> `http://44.197.230.236/api/...`
+> `http://52.207.146.61/api/...`
 
 | Endpoint              | Method | Description                              |
 |-----------------------|--------|------------------------------------------|
