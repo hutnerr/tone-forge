@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class RateLimiterInterceptor implements HandlerInterceptor 
 {
     private final Map<String, RequestInfo> requestCounts = new ConcurrentHashMap<>();
-    private final int MAX_REQUESTS = 5;      // max requests per time window
+    private final int MAX_REQUESTS = 2;      // max requests per time window
     private final long TIME_WINDOW = 60_000;  // 1 minute in milliseconds
 
     @Override
