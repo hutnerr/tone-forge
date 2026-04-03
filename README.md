@@ -7,13 +7,13 @@ It is built with **Spring Boot**, hosted on **AWS**, and uses the **Gemini API**
 
 You can view a simple demo of the API [here](https://hutnerr.github.io/tone-forge/). 
 
-> Limit's are strict due to me being on the free plan of Gemini
+> Limit's are strict due to me being on the free plan of Gemini as well as AWS.
 
 ## Usage
 
-Send a **POST** request to the API:
+Send a request to the API:
 
-`POST https://toneforge/api/convert`
+> `POST http://44.197.230.236/api/convert`
 
 Content-Type: application/json
 
@@ -37,7 +37,7 @@ The response will be JSON:
 Below is a simple JavaScript example.
 
 ```js
-const response = await fetch(`${API_BASE}/convert`, {
+const response = await fetch(`http://44.197.230.236/api/convert`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ strategy, text })
@@ -46,7 +46,9 @@ const response = await fetch(`${API_BASE}/convert`, {
 
 ## Endpoints
 
+> `http://44.197.230.236/api/...`
+
 | Endpoint              | Method | Description                              |
 |-----------------------|--------|------------------------------------------|
-| `/api/convert`        | POST   | Convert text to the specified lingo      |
-| `/api/strategies`     | GET    | Returns a list of all available lingos/strategies     |
+| `/convert`        | POST   | Convert text to the specified lingo      |
+| `/strategies`     | GET    | Returns a list of all available lingos/strategies     |
