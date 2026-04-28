@@ -1,5 +1,5 @@
 ## Overview
-ToneForge is a public API that converts text into specific lingos. For example, using the "Pirate" lingo, it might convert:
+ToneForged is a public API that converts text into specific lingos. For example, using the "Pirate" lingo, it might convert:
 
 Hello, Friend → Ahoy Matey!
 
